@@ -11,6 +11,8 @@
 - React 19
 - Vite（ビルドツール・開発サーバー）
 - npm
+- oxlint（Lint。`npm run lint` で実行）
+- GitHub Actions（GitHub Pagesへの自動デプロイ）
 
 ## ファイル構成
 
@@ -33,15 +35,25 @@ npm run dev
 - 日本語話者向けのアプリのため、UI文言・コメント（必要な場合）は日本語を基本とする
 - タスクの状態は `App.jsx` 内で `useState` により管理する（`{ id, text, done }` の配列）。`localStorage`（キー: `task-board:tasks`）に自動保存し、リロードしても保持される
 
+## コンポーネントの命名規約
+
+- コンポーネントファイル・関数名は `PascalCase`、ファイル名は拡張子 `.jsx`（例: `App.jsx` の `App`）
+- イベントハンドラは `handle + 動詞 + 対象` の `camelCase`（例: `handleAddTask`, `handleToggleTask`, `handleDeleteTask`）
+- state・props は用途がわかる `camelCase`（例: `tasks`, `inputValue`）
+- CSSクラス名は `kebab-case`（例: `task-item`, `task-label`, `delete-btn`）。状態を表すクラスは `done` のように状態名のみを付与し、`task-item.done` のように既存クラスと組み合わせる
+
 ## GitHubリポジトリ
 
 https://github.com/kazuya-0914/task-board
+
+## デプロイ先
+
+https://kazuya-0914.github.io/task-board/
 
 ## デプロイ（GitHub Pages）
 
 - `main`ブランチへのpushをトリガーに `.github/workflows/deploy.yml` がビルド＆デプロイを自動実行する
 - `vite.config.js` の `base: '/task-board/'` はGitHub Pagesのプロジェクトサイト配信パスに合わせた設定（変更しないこと）
-- 公開URL: https://kazuya-0914.github.io/task-board/
 - 初回のみ、GitHubリポジトリの Settings > Pages で Source を「GitHub Actions」に設定する必要がある（手動操作）
 
 ## Git運用ルール
