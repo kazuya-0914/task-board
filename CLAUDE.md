@@ -31,7 +31,7 @@ npm run dev
 
 - コンポーネント単位で責務を分割し、可読性を優先する。過度な抽象化は避ける
 - 日本語話者向けのアプリのため、UI文言・コメント（必要な場合）は日本語を基本とする
-- タスクの状態は `App.jsx` 内で `useState` により管理する（`{ id, text, done }` の配列）。永続化（localStorage等）は未実装
+- タスクの状態は `App.jsx` 内で `useState` により管理する（`{ id, text, done }` の配列）。`localStorage`（キー: `task-board:tasks`）に自動保存し、リロードしても保持される
 
 ## GitHubリポジトリ
 

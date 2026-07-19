@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
-let nextId = 1;
+const STORAGE_KEY = "task-board:tasks";
+
+function loadTasks() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(loadTasks);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleAddTask(e) {
     e.preventDefault();
@@ -13,7 +26,7 @@ function App() {
     const text = inputValue.trim();
     if (text === "") return;
 
-    setTasks([...tasks, { id: nextId++, text, done: false }]);
+    setTasks([...tasks, { id: crypto.randomUUID(), text, done: false }]);
     setInputValue("");
   }
 
