@@ -37,6 +37,13 @@ npm run dev
 
 https://github.com/kazuya-0914/task-board
 
+## デプロイ（GitHub Pages）
+
+- `main`ブランチへのpushをトリガーに `.github/workflows/deploy.yml` がビルド＆デプロイを自動実行する
+- `vite.config.js` の `base: '/task-board/'` はGitHub Pagesのプロジェクトサイト配信パスに合わせた設定（変更しないこと）
+- 公開URL: https://kazuya-0914.github.io/task-board/
+- 初回のみ、GitHubリポジトリの Settings > Pages で Source を「GitHub Actions」に設定する必要がある（手動操作）
+
 ## Git運用ルール
 
 - コードを変更したら、その都度コミットしてGitHubリポジトリ（origin/main）にプッシュすること
